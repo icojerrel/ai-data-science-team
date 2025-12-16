@@ -28,9 +28,9 @@ setup(
     packages=find_packages(),
     install_requires=parse_requirements("requirements.txt"),
     extras_require={
-        "machine_learning": ["h2o", "mlflow"],
+        "machine_learning": ["h2o", "mlflow", "lifelines"],
         "data_science": ["pytimetk", "missingno", "sweetviz"],
-        "all": ["h2o", "mlflow", "pytimetk", "missingno", "sweetviz"],
+        "all": ["h2o", "mlflow", "lifelines", "pytimetk", "missingno", "sweetviz"],
     },
     python_requires=">=3.9",
     classifiers=[

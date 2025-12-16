@@ -14,6 +14,7 @@ from ai_data_science_team.ds_agents import (
 from ai_data_science_team.ml_agents import (
     H2OMLAgent,
     MLflowToolsAgent,
+    SurvivalAnalysisAgent,
 )
 
 from ai_data_science_team.multiagents import (

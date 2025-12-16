@@ -737,6 +737,7 @@ agent = DataCleaningAgent(
 - `H2OMLAgent`: AutoML with H2O
 - `MLflowToolsAgent`: MLflow operations
 - `ModelEvaluationAgent`: Model evaluation
+- `SurvivalAnalysisAgent`: Time-to-event analysis for cancer research
 
 **DS Agents**:
 - `EDAToolsAgent`: Automated EDA with reports
@@ -766,11 +767,89 @@ agent = SomeAgent(
 
 ---
 
+## Cancer Research Applications
+
+### Survival Analysis Agent
+
+The **SurvivalAnalysisAgent** (`ml_agents/survival_analysis_agent.py`) is specifically designed for oncology research:
+
+**Key Features**:
+- Kaplan-Meier survival curves with confidence intervals
+- Cox proportional hazards modeling
+- Risk stratification and scoring
+- Log-rank test for group comparisons
+- Survival predictions for new patients
+- Interactive Plotly visualizations
+
+**Use Cases**:
+```python
+from ai_data_science_team.ml_agents import SurvivalAnalysisAgent
+
+# Initialize agent
+survival_agent = SurvivalAnalysisAgent(
+    model=llm,
+    time_column="survival_months",
+    event_column="death_event",
+    log=True
+)
+
+# Analyze treatment efficacy
+survival_agent.invoke_agent(
+    data_raw=clinical_data,
+    user_instructions="Compare survival between treatment A and B with log-rank test"
+)
+
+# Get results
+results = survival_agent.get_survival_results()
+plot = survival_agent.get_plotly_graph()
+```
+
+**Dependencies**:
+- `lifelines`: Core survival analysis library
+- Install with: `pip install ai-data-science-team[machine_learning]`
+
+**Example Notebook**: `/examples/ml_agents/survival_analysis_agent.ipynb`
+
+**Integration with Cancer Databases**:
+- Compatible with TCGA data
+- Works with cBioPortal exports
+- Supports clinical trial datasets
+- HIPAA-compliant when properly configured
+
+**Common Analyses**:
+1. **Treatment Comparison**: Compare survival across treatment arms
+2. **Prognostic Factors**: Identify variables affecting survival
+3. **Risk Stratification**: Group patients by predicted risk
+4. **Subgroup Analysis**: Analyze by tumor stage, biomarkers, etc.
+5. **Survival Prediction**: Estimate outcomes for new patients
+
+**Tools Available** (`tools/survival.py`):
+- `get_survival_data_summary()`: Summarize survival datasets
+- `validate_survival_data()`: Check data quality
+- `get_survival_analysis_best_practices()`: Coding guidelines
+
+### Future Cancer Research Agents
+
+**Planned Additions**:
+- **GenomicsAnalysisAgent**: Mutation analysis, pathway enrichment
+- **BiomarkerDiscoveryAgent**: Feature selection, signature development
+- **MedicalImagingAgent**: Tumor segmentation, radiomics
+- **ClinicalTrialAgent**: Patient stratification, outcome modeling
+
+**Integration Opportunities**:
+- **pyBioPortal**: cBioPortal data access
+- **GenePioneer**: Essential gene identification
+- **Biopython**: Sequence analysis
+- **BioPandas**: Molecular structure analysis
+
+---
+
 ## Changelog & Version Info
 
 **Current Version**: Beta (pre-0.1.0)
 
 **Recent Updates**:
+- Added Survival Analysis Agent for cancer research (lifelines integration)
 - Added H2O ML Agent with MLflow integration
 - Added EDA Tools Agent
 - Added Multi-Agent systems (Pandas, SQL)
