@@ -738,6 +738,7 @@ agent = DataCleaningAgent(
 - `MLflowToolsAgent`: MLflow operations
 - `ModelEvaluationAgent`: Model evaluation
 - `SurvivalAnalysisAgent`: Time-to-event analysis for cancer research
+- `GenomicsAnalysisAgent`: Mutation analysis and pathway enrichment
 
 **DS Agents**:
 - `EDAToolsAgent`: Automated EDA with reports
@@ -828,13 +829,71 @@ plot = survival_agent.get_plotly_graph()
 - `validate_survival_data()`: Check data quality
 - `get_survival_analysis_best_practices()`: Coding guidelines
 
+### Genomics Analysis Agent
+
+The **GenomicsAnalysisAgent** (`ml_agents/genomics_analysis_agent.py`) analyzes somatic mutations and performs pathway enrichment:
+
+**Key Features**:
+- Driver gene identification (TP53, KRAS, PIK3CA, etc.)
+- Mutation type distribution analysis
+- Pathway enrichment (RAS/RAF, PI3K/AKT, TP53, DNA repair)
+- Tumor mutational burden (TMB) calculation
+- Actionable mutation discovery
+- Oncoprint-style visualizations
+
+**Use Cases**:
+```python
+from ai_data_science_team.ml_agents import GenomicsAnalysisAgent
+
+# Initialize agent
+genomics_agent = GenomicsAnalysisAgent(
+    model=llm,
+    gene_column="gene",
+    mutation_column="mutation_type",
+    log=True
+)
+
+# Identify driver genes and pathways
+genomics_agent.invoke_agent(
+    data_raw=mutation_data,
+    user_instructions="Identify driver genes and perform pathway enrichment"
+)
+
+# Get results
+results = genomics_agent.get_genomics_results()
+plot = genomics_agent.get_plotly_graph()
+```
+
+**Example Notebook**: `/examples/ml_agents/genomics_analysis_agent.ipynb`
+
+**Tools Available** (`tools/genomics.py`):
+- `get_genomics_data_summary()`: Summarize mutation datasets
+- `validate_genomics_data()`: Check data quality
+- `get_common_cancer_genes()`: List of known driver genes
+- `get_cancer_pathways()`: Cancer pathway gene sets
+- `calculate_tumor_mutation_burden()`: TMB calculation
+
+**Common Analyses**:
+1. **Driver Discovery**: Identify recurrently mutated cancer genes
+2. **Pathway Analysis**: Group mutations by biological pathway
+3. **TMB Calculation**: Assess immunotherapy eligibility
+4. **Actionable Targets**: Find precision medicine opportunities
+5. **Clonality Analysis**: VAF-based tumor evolution inference
+
+**Integration with Other Agents**:
+```python
+# Combine genomics + survival analysis
+genomics_agent.invoke_agent(...)  # Find TP53 mutations
+survival_agent.invoke_agent(...)   # Compare survival by TP53 status
+```
+
 ### Future Cancer Research Agents
 
 **Planned Additions**:
-- **GenomicsAnalysisAgent**: Mutation analysis, pathway enrichment
 - **BiomarkerDiscoveryAgent**: Feature selection, signature development
 - **MedicalImagingAgent**: Tumor segmentation, radiomics
 - **ClinicalTrialAgent**: Patient stratification, outcome modeling
+- **DrugResponseAgent**: Predict treatment response
 
 **Integration Opportunities**:
 - **pyBioPortal**: cBioPortal data access
@@ -849,6 +908,7 @@ plot = survival_agent.get_plotly_graph()
 **Current Version**: Beta (pre-0.1.0)
 
 **Recent Updates**:
+- Added Genomics Analysis Agent for mutation and pathway analysis
 - Added Survival Analysis Agent for cancer research (lifelines integration)
 - Added H2O ML Agent with MLflow integration
 - Added EDA Tools Agent

@@ -2,3 +2,4 @@ from ai_data_science_team.ml_agents.h2o_ml_agent import make_h2o_ml_agent, H2OML
 from ai_data_science_team.ml_agents.mlflow_tools_agent import make_mlflow_tools_agent, MLflowToolsAgent
 from ai_data_science_team.ml_agents.model_evaluation_agent import ModelEvaluationAgent
 from ai_data_science_team.ml_agents.survival_analysis_agent import make_survival_analysis_agent, SurvivalAnalysisAgent
+from ai_data_science_team.ml_agents.genomics_analysis_agent import make_genomics_analysis_agent, GenomicsAnalysisAgent
