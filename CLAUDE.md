@@ -476,6 +476,9 @@ pip install ai-data-science-team[all]
 # OpenAI (or other LLM provider)
 export OPENAI_API_KEY="your-api-key"
 
+# Optional: OpenRouter (10-100x cheaper than direct API)
+export OPENROUTER_API_KEY="sk-or-v1-..."  # Get from https://openrouter.ai/
+
 # Optional: MLflow tracking
 export MLFLOW_TRACKING_URI="sqlite:///mlflow.db"
 ```
@@ -655,6 +658,63 @@ agent = DataCleaningAgent(
 - Development/Testing: `gpt-4o-mini` (faster, cheaper)
 - Production: `gpt-4o`, `gpt-4-turbo` (better quality)
 - Claude: `claude-3-5-sonnet-20241022` (high quality)
+
+### Cost-Effective Alternative: OpenRouter
+
+**Save 10-100x on API costs** by using OpenRouter instead of direct API access!
+
+OpenRouter (`utils/openrouter.py`) provides a unified gateway to multiple LLM providers at significantly reduced costs:
+
+**Recommended Models for Cancer Research**:
+- **Claude 3.5 Sonnet**: ~$3/M tokens (best quality/cost ratio)
+- **Claude 3 Haiku**: ~$0.25/M tokens (fast, cheap, high quality)
+- **Gemini Pro 1.5**: ~$1.25/M tokens (good balance)
+- **Llama 3.1 70B**: ~$0.35/M tokens (budget option)
+
+**Setup**:
+```python
+from ai_data_science_team.utils.openrouter import get_openrouter_llm
+import os
+
+# Set API key (get from https://openrouter.ai/)
+os.environ['OPENROUTER_API_KEY'] = "sk-or-v1-..."
+
+# Create LLM (drop-in replacement for ChatOpenAI)
+llm = get_openrouter_llm(
+    model="anthropic/claude-3.5-sonnet",
+    temperature=0
+)
+
+# Use with any agent
+survival_agent = SurvivalAnalysisAgent(
+    model=llm,  # Works exactly the same!
+    time_column="survival_months",
+    event_column="death_event"
+)
+```
+
+**Cost Comparison** (example: 1M tokens):
+- Direct OpenAI GPT-4o: ~$5.00
+- OpenRouter Claude 3.5 Sonnet: ~$9.00 (via OpenRouter pricing)
+- OpenRouter Claude 3 Haiku: ~$0.75
+- OpenRouter Llama 3.1 70B: ~$0.35
+
+**Utility Functions** (`utils/openrouter.py`):
+- `get_openrouter_llm(model, temperature, **kwargs)`: Create LangChain-compatible LLM
+- `get_cost_estimate(model, input_tokens, output_tokens)`: Estimate costs
+- `list_recommended_models()`: View categorized model recommendations
+- `compare_costs(openai_model, openrouter_model, tokens)`: Compare pricing
+
+**Benefits**:
+- 10-100x cheaper than direct API access
+- Access to Claude, Llama, Mistral, Gemini, and more
+- LangChain-compatible (no code changes needed)
+- Pay only for what you use
+- Perfect for high-volume cancer research workflows
+
+**See Examples**:
+- `examples/ml_agents/survival_analysis_agent.ipynb` (cells 4-7)
+- `examples/ml_agents/genomics_analysis_agent.ipynb` (cells 4-6)
 
 ### Optimization Strategies
 
