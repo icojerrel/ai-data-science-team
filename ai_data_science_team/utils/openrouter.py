@@ -194,6 +194,14 @@ def get_cost_estimate(
         "openai/gpt-4o": {"input": 2.50, "output": 10.00},
         "openai/gpt-4o-mini": {"input": 0.15, "output": 0.60},
 
+        # Ultra-Budget Chinese Models (extremely cheap!)
+        "deepseek/deepseek-chat": {"input": 0.14, "output": 0.28},
+        "deepseek/deepseek-coder": {"input": 0.14, "output": 0.28},
+        "qwen/qwen-2.5-72b-instruct": {"input": 0.35, "output": 0.35},
+        "qwen/qwen-2-72b-instruct": {"input": 0.27, "output": 0.27},
+        "01-ai/yi-large": {"input": 0.30, "output": 0.30},
+        "zhipu/glm-4-9b-chat": {"input": 0.20, "output": 0.20},
+
         # Default fallback
         "default": {"input": 1.00, "output": 2.00},
     }
@@ -274,6 +282,32 @@ def list_recommended_models() -> dict:
                 "quality": "⭐⭐⭐",
                 "use_case": "High-volume testing",
                 "pros": "Extremely cheap, fast",
+            },
+        },
+        "ultra_budget": {
+            "deepseek/deepseek-chat": {
+                "price": "$0.14/M tokens",
+                "quality": "⭐⭐⭐",
+                "use_case": "Massive batch processing, development",
+                "pros": "Ultra-cheap Chinese model, good for code generation",
+            },
+            "qwen/qwen-2.5-72b-instruct": {
+                "price": "$0.35/M tokens",
+                "quality": "⭐⭐⭐",
+                "use_case": "High-volume cancer data processing",
+                "pros": "Alibaba's flagship model, multilingual, very affordable",
+            },
+            "zhipu/glm-4-9b-chat": {
+                "price": "$0.20/M tokens",
+                "quality": "⭐⭐",
+                "use_case": "Simple data transformations, testing",
+                "pros": "ChatGLM model, extremely cheap for experimentation",
+            },
+            "01-ai/yi-large": {
+                "price": "$0.30/M tokens",
+                "quality": "⭐⭐⭐",
+                "use_case": "Large-scale genomics screening",
+                "pros": "Strong performance at ultra-low cost",
             },
         },
     }

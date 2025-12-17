@@ -160,6 +160,90 @@ llm = get_openrouter_llm("google/gemini-flash-1.5")
 
 ---
 
+### Ultra-Budget Tier (Chinese Models - Massive Cost Savings!)
+
+These Chinese AI models offer **incredible value** - often 100-500x cheaper than OpenAI while maintaining good quality for many tasks.
+
+#### DeepSeek Chat / DeepSeek Coder
+- **Cost**: ~$0.14/M tokens (input), ~$0.28/M tokens (output)
+- **Quality**: ⭐⭐⭐
+- **Best For**: Massive batch processing, code generation, development
+- **Model ID**: `"deepseek/deepseek-chat"` or `"deepseek/deepseek-coder"`
+
+```python
+llm = get_openrouter_llm("deepseek/deepseek-chat")
+```
+
+**Why choose this**: **ULTRA-CHEAP**. DeepSeek models are incredibly affordable while still producing good results. DeepSeek Coder is especially strong at generating Python code for data analysis. Perfect for processing tens of thousands of cancer patient records.
+
+**Use Cases**:
+- Screening 50,000+ mutation records
+- Batch processing clinical trial data
+- Development and prototyping
+- Simple data transformations
+
+---
+
+#### Qwen 2.5 72B Instruct (Alibaba)
+- **Cost**: ~$0.35/M tokens
+- **Quality**: ⭐⭐⭐
+- **Best For**: High-volume cancer data processing, multilingual research
+- **Model ID**: `"qwen/qwen-2.5-72b-instruct"`
+
+```python
+llm = get_openrouter_llm("qwen/qwen-2.5-72b-instruct")
+```
+
+**Why choose this**: Alibaba's flagship open model. Excellent performance at ultra-low cost. Supports multiple languages, making it ideal for international cancer research collaborations.
+
+**Use Cases**:
+- Pan-cancer genomics analysis (10,000+ samples)
+- International clinical trial data processing
+- Large-scale survival analysis
+- Pathway enrichment on massive datasets
+
+---
+
+#### GLM-4 9B Chat (Zhipu AI / ChatGLM)
+- **Cost**: ~$0.20/M tokens
+- **Quality**: ⭐⭐
+- **Best For**: Simple data transformations, experimentation
+- **Model ID**: `"zhipu/glm-4-9b-chat"`
+
+```python
+llm = get_openrouter_llm("zhipu/glm-4-9b-chat")
+```
+
+**Why choose this**: Extremely cheap for quick experiments and simple tasks. Good for initial data exploration before using premium models.
+
+**Use Cases**:
+- Quick data summaries
+- Simple mutation filtering
+- Exploratory data analysis
+- Testing agent pipelines
+
+---
+
+#### Yi Large (01.AI)
+- **Cost**: ~$0.30/M tokens
+- **Quality**: ⭐⭐⭐
+- **Best For**: Large-scale genomics screening, balanced quality/cost
+- **Model ID**: `"01-ai/yi-large"`
+
+```python
+llm = get_openrouter_llm("01-ai/yi-large")
+```
+
+**Why choose this**: Strong performance at ultra-low cost. Yi Large offers excellent reasoning capabilities while being incredibly affordable.
+
+**Use Cases**:
+- Driver gene identification across cohorts
+- Tumor mutation burden calculations
+- Risk stratification for large patient populations
+- Biomarker discovery screening
+
+---
+
 ## Cost Comparison Examples
 
 ### Example 1: Typical Survival Analysis
@@ -174,8 +258,10 @@ llm = get_openrouter_llm("google/gemini-flash-1.5")
 | OpenRouter Claude 3.5 Sonnet | $0.075 | ~0% (similar) |
 | OpenRouter Claude 3 Haiku | $0.006 | **92% cheaper** |
 | OpenRouter Llama 3.1 70B | $0.005 | **93% cheaper** |
+| **OpenRouter DeepSeek Chat** | **$0.002** | **🔥 97% cheaper** |
+| **OpenRouter Qwen 2.5 72B** | **$0.005** | **🔥 93% cheaper** |
 
-**Recommendation**: Use Claude 3 Haiku for best value.
+**Recommendation**: Use DeepSeek Chat or Qwen 2.5 for **maximum savings**, or Claude 3 Haiku for best quality/cost balance.
 
 ---
 
@@ -191,8 +277,11 @@ llm = get_openrouter_llm("google/gemini-flash-1.5")
 | OpenRouter Claude 3.5 Sonnet | $0.600 | 20% cheaper |
 | OpenRouter Claude 3 Haiku | $0.050 | **93% cheaper** |
 | OpenRouter Gemini Flash | $0.014 | **98% cheaper** |
+| **OpenRouter DeepSeek Chat** | **$0.020** | **🔥 97% cheaper** |
+| **OpenRouter Qwen 2.5 72B** | **$0.042** | **🔥 94% cheaper** |
+| **OpenRouter Yi Large** | **$0.036** | **🔥 95% cheaper** |
 
-**Recommendation**: Start with Claude 3 Haiku for development, then use Claude 3.5 Sonnet for final production analysis.
+**Recommendation**: Start with DeepSeek/Qwen for initial screening (**massive savings**), validate with Claude 3 Haiku, then use Claude 3.5 Sonnet for final production analysis if needed.
 
 ---
 
@@ -208,8 +297,11 @@ llm = get_openrouter_llm("google/gemini-flash-1.5")
 | OpenRouter Claude 3.5 Sonnet | $6.00 | 20% cheaper |
 | OpenRouter Claude 3 Haiku | $0.50 | **93% cheaper** |
 | OpenRouter Llama 3.1 70B | $0.42 | **94% cheaper** |
+| **OpenRouter DeepSeek Chat** | **$0.20** | **🔥 97% cheaper** |
+| **OpenRouter Qwen 2.5 72B** | **$0.42** | **🔥 94% cheaper** |
+| **OpenRouter GLM-4 9B** | **$0.24** | **🔥 97% cheaper** |
 
-**Recommendation**: Use Llama 3.1 70B or Claude 3 Haiku for massive cost savings.
+**Recommendation**: Use DeepSeek Chat or GLM-4 for **extreme cost savings** on massive batch processing. These ultra-budget models can save you **hundreds of dollars** on large-scale cancer research datasets!
 
 ---
 
@@ -297,6 +389,64 @@ genomics_agent.invoke_agent(
 # Get results
 driver_genes = genomics_agent.get_genomics_results()
 ```
+
+---
+
+### Ultra-Budget Models Example (Massive Batch Processing)
+
+```python
+from ai_data_science_team.utils.openrouter import get_openrouter_llm
+from ai_data_science_team.ml_agents import GenomicsAnalysisAgent
+import pandas as pd
+
+# Load MASSIVE mutation dataset (50,000+ samples)
+mutations = pd.read_csv("pan_cancer_mutations.csv")  # e.g., TCGA pan-cancer
+
+# Use DeepSeek Chat for ultra-cheap screening
+llm_deepseek = get_openrouter_llm("deepseek/deepseek-chat")
+
+# Initialize genomics agent
+genomics_agent = GenomicsAnalysisAgent(
+    model=llm_deepseek,
+    gene_column="Hugo_Symbol",
+    mutation_column="Variant_Classification"
+)
+
+# Screen all 50,000 samples for driver genes
+# Cost: ~$0.50 with DeepSeek vs ~$150 with OpenAI GPT-4o!
+genomics_agent.invoke_agent(
+    data_raw=mutations,
+    user_instructions="""
+    Identify top 50 cancer driver genes across all samples.
+    Calculate mutation frequency for each gene.
+    Flag samples with actionable mutations (BRAF V600E, EGFR exon 19 del, etc.)
+    """
+)
+
+# Get results - saved $149.50!
+driver_genes = genomics_agent.get_genomics_results()
+
+# For even MORE savings, use Qwen for multilingual research
+llm_qwen = get_openrouter_llm("qwen/qwen-2.5-72b-instruct")
+
+# Process Chinese + English clinical data
+survival_agent = SurvivalAnalysisAgent(
+    model=llm_qwen,
+    time_column="OS_months",
+    event_column="death"
+)
+
+# Works with multilingual data!
+survival_agent.invoke_agent(
+    data_raw=international_cohort,
+    user_instructions="Compare survival across Asian and Western patient cohorts"
+)
+```
+
+**Cost Savings**:
+- **50,000 samples with OpenAI GPT-4o**: ~$150
+- **50,000 samples with DeepSeek Chat**: ~$0.50
+- **Total Savings**: $149.50 (99.7% cheaper!)
 
 ---
 

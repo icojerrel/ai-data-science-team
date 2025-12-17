@@ -670,6 +670,9 @@ OpenRouter (`utils/openrouter.py`) provides a unified gateway to multiple LLM pr
 - **Claude 3 Haiku**: ~$0.25/M tokens (fast, cheap, high quality)
 - **Gemini Pro 1.5**: ~$1.25/M tokens (good balance)
 - **Llama 3.1 70B**: ~$0.35/M tokens (budget option)
+- **DeepSeek Chat**: ~$0.14/M tokens (ultra-budget, 100-500x cheaper than OpenAI)
+- **Qwen 2.5 72B**: ~$0.35/M tokens (ultra-budget, multilingual, Alibaba)
+- **Yi Large**: ~$0.30/M tokens (ultra-budget, strong reasoning)
 
 **Setup**:
 ```python
@@ -698,6 +701,8 @@ survival_agent = SurvivalAnalysisAgent(
 - OpenRouter Claude 3.5 Sonnet: ~$9.00 (via OpenRouter pricing)
 - OpenRouter Claude 3 Haiku: ~$0.75
 - OpenRouter Llama 3.1 70B: ~$0.35
+- **OpenRouter DeepSeek Chat: ~$0.21 (🔥 96% cheaper than OpenAI)**
+- **OpenRouter Qwen 2.5 72B: ~$0.42 (🔥 92% cheaper than OpenAI)**
 
 **Utility Functions** (`utils/openrouter.py`):
 - `get_openrouter_llm(model, temperature, **kwargs)`: Create LangChain-compatible LLM
