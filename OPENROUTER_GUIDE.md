@@ -244,6 +244,34 @@ llm = get_openrouter_llm("01-ai/yi-large")
 
 ---
 
+#### Kimi K2 (Moonshot AI)
+- **Cost**: ~$0.20/M tokens (input), ~$0.60/M tokens (output)
+- **Quality**: ⭐⭐⭐
+- **Best For**: Long-context clinical trial analysis, comprehensive patient records
+- **Model ID**: `"moonshot/kimi-k2"`
+
+```python
+llm = get_openrouter_llm("moonshot/kimi-k2")
+```
+
+**Why choose this**: Kimi K2 from Moonshot AI excels at processing long clinical documents and extensive patient records. Perfect for analyzing complete medical histories, long-form clinical trial protocols, and comprehensive genomic reports. Excellent long-context capability at affordable pricing.
+
+**Use Cases**:
+- Processing lengthy clinical trial protocols (20,000+ tokens)
+- Analyzing comprehensive patient medical histories
+- Long-form genomic variant interpretation reports
+- Multi-gene panel analysis with detailed annotations
+- Longitudinal patient data analysis across multiple timepoints
+- Clinical guideline interpretation and application
+
+**Special Strength**: Kimi K2's long-context window makes it ideal for cancer research requiring analysis of:
+- Complete TCGA patient records with all clinical annotations
+- Full-length clinical trial protocols and outcomes
+- Comprehensive genomic reports with extensive variant annotations
+- Integrated multi-omics datasets (genomics + transcriptomics + proteomics)
+
+---
+
 ## Cost Comparison Examples
 
 ### Example 1: Typical Survival Analysis
@@ -260,8 +288,9 @@ llm = get_openrouter_llm("01-ai/yi-large")
 | OpenRouter Llama 3.1 70B | $0.005 | **93% cheaper** |
 | **OpenRouter DeepSeek Chat** | **$0.002** | **🔥 97% cheaper** |
 | **OpenRouter Qwen 2.5 72B** | **$0.005** | **🔥 93% cheaper** |
+| **OpenRouter Kimi K2** | **$0.004** | **🔥 95% cheaper** |
 
-**Recommendation**: Use DeepSeek Chat or Qwen 2.5 for **maximum savings**, or Claude 3 Haiku for best quality/cost balance.
+**Recommendation**: Use DeepSeek Chat or Kimi K2 for **maximum savings**, or Claude 3 Haiku for best quality/cost balance.
 
 ---
 
@@ -280,8 +309,9 @@ llm = get_openrouter_llm("01-ai/yi-large")
 | **OpenRouter DeepSeek Chat** | **$0.020** | **🔥 97% cheaper** |
 | **OpenRouter Qwen 2.5 72B** | **$0.042** | **🔥 94% cheaper** |
 | **OpenRouter Yi Large** | **$0.036** | **🔥 95% cheaper** |
+| **OpenRouter Kimi K2** | **$0.032** | **🔥 96% cheaper** |
 
-**Recommendation**: Start with DeepSeek/Qwen for initial screening (**massive savings**), validate with Claude 3 Haiku, then use Claude 3.5 Sonnet for final production analysis if needed.
+**Recommendation**: Start with DeepSeek/Kimi K2 for initial screening (**massive savings**), validate with Claude 3 Haiku, then use Claude 3.5 Sonnet for final production analysis if needed. Use Kimi K2 specifically for long genomic reports.
 
 ---
 
@@ -300,8 +330,9 @@ llm = get_openrouter_llm("01-ai/yi-large")
 | **OpenRouter DeepSeek Chat** | **$0.20** | **🔥 97% cheaper** |
 | **OpenRouter Qwen 2.5 72B** | **$0.42** | **🔥 94% cheaper** |
 | **OpenRouter GLM-4 9B** | **$0.24** | **🔥 97% cheaper** |
+| **OpenRouter Kimi K2** | **$0.32** | **🔥 96% cheaper** |
 
-**Recommendation**: Use DeepSeek Chat or GLM-4 for **extreme cost savings** on massive batch processing. These ultra-budget models can save you **hundreds of dollars** on large-scale cancer research datasets!
+**Recommendation**: Use DeepSeek Chat or GLM-4 for **extreme cost savings** on massive batch processing. Use Kimi K2 for long-context clinical documents. These ultra-budget models can save you **hundreds of dollars** on large-scale cancer research datasets!
 
 ---
 

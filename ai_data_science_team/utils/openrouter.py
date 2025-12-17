@@ -201,6 +201,7 @@ def get_cost_estimate(
         "qwen/qwen-2-72b-instruct": {"input": 0.27, "output": 0.27},
         "01-ai/yi-large": {"input": 0.30, "output": 0.30},
         "zhipu/glm-4-9b-chat": {"input": 0.20, "output": 0.20},
+        "moonshot/kimi-k2": {"input": 0.20, "output": 0.60},
 
         # Default fallback
         "default": {"input": 1.00, "output": 2.00},
@@ -308,6 +309,12 @@ def list_recommended_models() -> dict:
                 "quality": "⭐⭐⭐",
                 "use_case": "Large-scale genomics screening",
                 "pros": "Strong performance at ultra-low cost",
+            },
+            "moonshot/kimi-k2": {
+                "price": "$0.20/M tokens (input), $0.60/M tokens (output)",
+                "quality": "⭐⭐⭐",
+                "use_case": "Long-context cancer research, clinical trial analysis",
+                "pros": "Moonshot AI model, excellent long-context capability, affordable",
             },
         },
     }

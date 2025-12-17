@@ -673,6 +673,7 @@ OpenRouter (`utils/openrouter.py`) provides a unified gateway to multiple LLM pr
 - **DeepSeek Chat**: ~$0.14/M tokens (ultra-budget, 100-500x cheaper than OpenAI)
 - **Qwen 2.5 72B**: ~$0.35/M tokens (ultra-budget, multilingual, Alibaba)
 - **Yi Large**: ~$0.30/M tokens (ultra-budget, strong reasoning)
+- **Kimi K2**: ~$0.20/M tokens (ultra-budget, excellent long-context, Moonshot AI)
 
 **Setup**:
 ```python
